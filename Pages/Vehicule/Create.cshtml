@@ -1,0 +1,44 @@
+﻿@page
+@model patitu_florin_proiect.Pages.Vehicule.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Vehicul</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vehicul.NumarInmatriculare" class="control-label"></label>
+                <input asp-for="Vehicul.NumarInmatriculare" class="form-control" />
+                <span asp-validation-for="Vehicul.NumarInmatriculare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vehicul.Model" class="control-label"></label>
+                <input asp-for="Vehicul.Model" class="form-control" />
+                <span asp-validation-for="Vehicul.Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vehicul.Marca" class="control-label"></label>
+                <input asp-for="Vehicul.Marca" class="form-control" />
+                <span asp-validation-for="Vehicul.Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

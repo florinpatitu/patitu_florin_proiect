@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - patitu_florin_proiect</title>
+    <title>@ViewData["Title"] - Service Florin Patitu</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/patitu_florin_proiect.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary text-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">patitu_florin_proiect</a>
+                <a class="navbar-brand text-white" asp-page="/Index">Service Florin Patitu</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,10 +20,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-light btn btn-outline-light mx-1" asp-page="/Index">Pagina Principala</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-light btn btn-outline-warning mx-1" asp-page="/Vehicule/Index">Vehicule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light btn btn-outline-success mx-1" asp-page="/Mecanici/Index">Mecanici</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light btn btn-outline-info mx-1" asp-page="/SarciniService/Index">Sarcini</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light btn btn-outline-danger mx-1" asp-page="/Piese/Index">Piese</a>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +47,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - patitu_florin_proiect - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2025 - Service Florin Patitu
         </div>
     </footer>
 

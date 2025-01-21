@@ -1,10 +1,19 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Pagina Principala";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bine ai venit la service-ul lui Florin Patitu</h1>
+    <img src="~/images/service_image.jpg" class="img-fluid mt-4 mb-4" alt="Service Florin Patitu" />
+
+    <p class="lead">Navigheaza paginile de mai jos.</p>
+
+    <div class="d-flex justify-content-center">
+        <a href="/Vehicule/Index" class="btn btn-primary mx-2">Gestionare Vehicule</a>
+        <a href="/Mecanici/Index" class="btn btn-secondary mx-2">Gestionare Mecanici</a>
+        <a href="/SarciniService/Index" class="btn btn-success mx-2">Gestionare Sarcini</a>
+        <a href="/Piese/Index" class="btn btn-warning mx-2">Gestionare Piese</a>
+    </div>
 </div>

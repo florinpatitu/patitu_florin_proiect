@@ -1,0 +1,54 @@
+﻿@page
+@model patitu_florin_proiect.Pages.SarciniService.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SarcinaService[0].Descriere)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SarcinaService[0].DataProgramare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SarcinaService[0].Vehicul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SarcinaService[0].Mecanic)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SarcinaService) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descriere)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataProgramare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicul.VehiculID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mecanic.MecanicID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SarcinaServiceID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SarcinaServiceID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SarcinaServiceID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

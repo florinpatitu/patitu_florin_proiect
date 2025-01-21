@@ -1,0 +1,48 @@
+﻿@page
+@model patitu_florin_proiect.Pages.Vehicule.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].NumarInmatriculare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicul[0].Marca)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Vehicul) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumarInmatriculare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.VehiculID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.VehiculID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.VehiculID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,40 @@
+﻿@page
+@model patitu_florin_proiect.Pages.Piese.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Piesa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Piesa.PiesaID" />
+            <div class="form-group">
+                <label asp-for="Piesa.Nume" class="control-label"></label>
+                <input asp-for="Piesa.Nume" class="form-control" />
+                <span asp-validation-for="Piesa.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Piesa.Pret" class="control-label"></label>
+                <input asp-for="Piesa.Pret" class="form-control" />
+                <span asp-validation-for="Piesa.Pret" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
