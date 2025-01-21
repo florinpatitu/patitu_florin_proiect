@@ -2,14 +2,15 @@
 @model patitu_florin_proiect.Pages.Mecanici.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista Mecanici";
 }
 
-<h1>Index</h1>
+<h1>Lista Mecanici</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-success">Creaza Mecanicul</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -19,24 +20,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.Mecanic[0].Prenume)
             </th>
-            <th></th>
+            <th>
+                Actiuni
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Mecanic) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prenume)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.MecanicID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.MecanicID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.MecanicID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Mecanic)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenume)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.MecanicID" class="btn btn-warning">Editeaza</a> |
+                    <a asp-page="./Details" asp-route-id="@item.MecanicID" class="btn btn-info">Detalii</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.MecanicID" class="btn btn-danger">Sterge</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<p>
+    <a asp-page="./Index" class="btn btn-secondary">Inapoi la lista</a>
+</p>

@@ -19,42 +19,28 @@ namespace patitu_florin_proiect.Pages.Mecanici
         }
 
         [BindProperty]
-        public Mecanic Mecanic { get; set; } = default!;
+        public Mecanic Mecanic { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
+            Mecanic = await _context.Mecanici.FirstOrDefaultAsync(m => m.MecanicID == id);
+
+            if (Mecanic == null)
             {
                 return NotFound();
-            }
-
-            var mecanic = await _context.Mecanici.FirstOrDefaultAsync(m => m.MecanicID == id);
-
-            if (mecanic == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                Mecanic = mecanic;
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
+            if (Mecanic == null)
             {
                 return NotFound();
             }
 
-            var mecanic = await _context.Mecanici.FindAsync(id);
-            if (mecanic != null)
-            {
-                Mecanic = mecanic;
-                _context.Mecanici.Remove(Mecanic);
-                await _context.SaveChangesAsync();
-            }
+            _context.Mecanici.Remove(Mecanic);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using patitu_florin_proiect.Modele;
 
 namespace patitu_florin_proiect.Pages.Mecanici
@@ -24,9 +23,8 @@ namespace patitu_florin_proiect.Pages.Mecanici
         }
 
         [BindProperty]
-        public Mecanic Mecanic { get; set; } = default!;
+        public Mecanic Mecanic { get; set; }
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
