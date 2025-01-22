@@ -5,43 +5,41 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create SarcinaService</h1>
 
-<h4>SarcinaService</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="SarcinaService.Descriere" class="control-label"></label>
-                <input asp-for="SarcinaService.Descriere" class="form-control" />
-                <span asp-validation-for="SarcinaService.Descriere" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SarcinaService.DataProgramare" class="control-label"></label>
-                <input asp-for="SarcinaService.DataProgramare" class="form-control" />
-                <span asp-validation-for="SarcinaService.DataProgramare" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SarcinaService.VehiculID" class="control-label"></label>
-                <select asp-for="SarcinaService.VehiculID" class ="form-control" asp-items="ViewBag.VehiculID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="SarcinaService.MecanicID" class="control-label"></label>
-                <select asp-for="SarcinaService.MecanicID" class ="form-control" asp-items="ViewBag.MecanicID"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="SarcinaService.Descriere" class="control-label"></label>
+        <input asp-for="SarcinaService.Descriere" class="form-control" />
+        <span asp-validation-for="SarcinaService.Descriere" class="text-danger"></span>
     </div>
-</div>
+    <div class="form-group">
+        <label asp-for="SarcinaService.DataProgramare" class="control-label"></label>
+        <input asp-for="SarcinaService.DataProgramare" class="form-control" type="date" />
+        <span asp-validation-for="SarcinaService.DataProgramare" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SarcinaService.VehiculID" class="control-label"></label>
+        <select asp-for="SarcinaService.VehiculID" class="form-control" asp-items="ViewBag.VehiculID"></select>
+        <span asp-validation-for="SarcinaService.VehiculID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SarcinaService.MecanicID" class="control-label"></label>
+        <select asp-for="SarcinaService.MecanicID" class="form-control" asp-items="ViewBag.MecanicID"></select>
+        <span asp-validation-for="SarcinaService.MecanicID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
 
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

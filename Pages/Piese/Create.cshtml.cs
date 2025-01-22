@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using patitu_florin_proiect.Modele;
+using System.Threading.Tasks;
 
 namespace patitu_florin_proiect.Pages.Piese
 {
     public class CreateModel : PageModel
     {
-        private readonly patitu_florin_proiect.Modele.DataContext _context;
+        private readonly DataContext _context;
 
-        public CreateModel(patitu_florin_proiect.Modele.DataContext context)
+        public CreateModel(DataContext context)
         {
             _context = context;
         }
+
+        [BindProperty]
+        public Piesa Piesa { get; set; } = new Piesa();
 
         public IActionResult OnGet()
         {
             return Page();
         }
 
-        [BindProperty]
-        public Piesa Piesa { get; set; } = default!;
-
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

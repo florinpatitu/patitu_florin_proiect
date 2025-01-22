@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using patitu_florin_proiect.Modele;
+using System.Threading.Tasks;
 
 namespace patitu_florin_proiect.Pages.Mecanici
 {
     public class CreateModel : PageModel
     {
-        private readonly patitu_florin_proiect.Modele.DataContext _context;
+        private readonly DataContext _context;
 
-        public CreateModel(patitu_florin_proiect.Modele.DataContext context)
+        public CreateModel(DataContext context)
         {
             _context = context;
         }
+
+        [BindProperty]
+        public Mecanic Mecanic { get; set; } = new Mecanic();
 
         public IActionResult OnGet()
         {
             return Page();
         }
-
-        [BindProperty]
-        public Mecanic Mecanic { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

@@ -1,34 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using patitu_florin_proiect.Modele;
+using System.Threading.Tasks;
 
 namespace patitu_florin_proiect.Pages.Mecanici
 {
     public class EditModel : PageModel
     {
-        private readonly patitu_florin_proiect.Modele.DataContext _context;
+        private readonly DataContext _context;
 
-        public EditModel(patitu_florin_proiect.Modele.DataContext context)
+        public EditModel(DataContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Mecanic Mecanic { get; set; }
+        public Mecanic? Mecanic { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Mecanic = await _context.Mecanici.FirstOrDefaultAsync(m => m.MecanicID == id);
+            Mecanic = await _context.Mecanici.FindAsync(id);
 
             if (Mecanic == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
 
@@ -39,7 +36,16 @@ namespace patitu_florin_proiect.Pages.Mecanici
                 return Page();
             }
 
-            _context.Attach(Mecanic).State = EntityState.Modified;
+            var mecanicToUpdate = await _context.Mecanici.FindAsync(Mecanic?.MecanicID);
+
+            if (mecanicToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            mecanicToUpdate.Nume = Mecanic.Nume;
+            mecanicToUpdate.Prenume = Mecanic.Prenume;
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

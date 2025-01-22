@@ -8,8 +8,9 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -20,35 +21,36 @@
                 @Html.DisplayNameFor(model => model.SarcinaService[0].DataProgramare)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SarcinaService[0].Vehicul)
+                Vehicul
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SarcinaService[0].Mecanic)
+                Mecanic
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.SarcinaService) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descriere)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataProgramare)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehicul.VehiculID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mecanic.MecanicID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.SarcinaServiceID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.SarcinaServiceID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.SarcinaServiceID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.SarcinaService)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriere)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataProgramare)
+                </td>
+                <td>
+                    @item.Vehicul?.NumarInmatriculare
+                </td>
+                <td>
+                    @item.Mecanic?.Nume
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.SarcinaServiceID" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.SarcinaServiceID" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.SarcinaServiceID" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

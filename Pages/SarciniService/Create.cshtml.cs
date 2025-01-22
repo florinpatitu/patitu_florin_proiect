@@ -1,43 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using patitu_florin_proiect.Modele;
+using System.Threading.Tasks;
 
 namespace patitu_florin_proiect.Pages.SarciniService
 {
     public class CreateModel : PageModel
     {
-        private readonly patitu_florin_proiect.Modele.DataContext _context;
+        private readonly DataContext _context;
 
-        public CreateModel(patitu_florin_proiect.Modele.DataContext context)
+        public CreateModel(DataContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
+        public SarcinaService SarcinaService { get; set; } = new SarcinaService();
+
         public IActionResult OnGet()
         {
-        ViewData["MecanicID"] = new SelectList(_context.Mecanici, "MecanicID", "MecanicID");
-        ViewData["VehiculID"] = new SelectList(_context.Vehicule, "VehiculID", "VehiculID");
+            ViewData["VehiculID"] = new SelectList(_context.Vehicule, "VehiculID", "NumarInmatriculare");
+            ViewData["MecanicID"] = new SelectList(_context.Mecanici, "MecanicID", "Nume");
+            ViewData["PiesaID"] = new SelectList(_context.Piese, "PiesaID", "Nume");
+
             return Page();
         }
 
-        [BindProperty]
-        public SarcinaService SarcinaService { get; set; } = default!;
-
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                ViewData["VehiculID"] = new SelectList(_context.Vehicule, "VehiculID", "NumarInmatriculare");
+                ViewData["MecanicID"] = new SelectList(_context.Mecanici, "MecanicID", "Nume");
+                ViewData["PiesaID"] = new SelectList(_context.Piese, "PiesaID", "Nume");
                 return Page();
             }
 
-            _context.SarciniService.Add(SarcinaService);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.SarciniService.Add(SarcinaService);
+                await _context.SaveChangesAsync();
+                Console.WriteLine("Sarcina adăugata cu succes.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Eroare la salvare: {ex.Message}");
+                ModelState.AddModelError("", "A aparut o eroare la salvarea datelor.");
+                return Page();
+            }
 
             return RedirectToPage("./Index");
         }

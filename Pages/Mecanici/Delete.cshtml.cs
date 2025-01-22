@@ -1,45 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using patitu_florin_proiect.Modele;
+using System.Threading.Tasks;
 
 namespace patitu_florin_proiect.Pages.Mecanici
 {
     public class DeleteModel : PageModel
     {
-        private readonly patitu_florin_proiect.Modele.DataContext _context;
+        private readonly DataContext _context;
 
-        public DeleteModel(patitu_florin_proiect.Modele.DataContext context)
+        public DeleteModel(DataContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Mecanic Mecanic { get; set; }
+        public Mecanic? Mecanic { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Mecanic = await _context.Mecanici.FirstOrDefaultAsync(m => m.MecanicID == id);
+            Mecanic = await _context.Mecanici.FindAsync(id);
 
             if (Mecanic == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (Mecanic == null)
+            var mecanicToDelete = await _context.Mecanici.FindAsync(id);
+
+            if (mecanicToDelete == null)
             {
                 return NotFound();
             }
 
-            _context.Mecanici.Remove(Mecanic);
+            _context.Mecanici.Remove(mecanicToDelete);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
